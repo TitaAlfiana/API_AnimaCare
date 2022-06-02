@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require('./routes')
 const server = express()
 
-mongoose.connect('mongodb://localhost:27017/API_AnimaCare', {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
