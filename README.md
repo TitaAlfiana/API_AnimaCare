@@ -1,3 +1,3 @@
 # API_AnimaCare
 
-You can now access the server at http://localhost:5000
+You can now access the server at https://animacare.herokuapp.com/
