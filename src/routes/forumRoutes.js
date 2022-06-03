@@ -1,15 +1,15 @@
 const express = require('express')
 const {
-  getForum,
+  getAllForum,
   postForum,
   updateForum,
   getForumById,
   deleteForum
-} = require('./controllers')
+} = require('../controllers/forumControllers')
 
 const router = express.Router()
 
-router.get('/', getForum)
+router.get('/', getAllForum)
 router.get('/:id', getForumById)
 router.post('/', postForum)
 router.patch('/:id', updateForum)
