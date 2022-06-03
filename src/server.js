@@ -6,6 +6,7 @@ const multer = require('multer')
 const path = require('path')
 const forumRouter = require('./routes/forumRoutes')
 const commentRouter = require('./routes/commentRoutes')
+const articleRouter = require('./routes/articleRoutes')
 const server = express()
 
 mongoose.connect(process.env.DB_URL, {
@@ -41,6 +42,7 @@ server.use('/images', express.static(path.join(__dirname, 'images')))
 server.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'))
 server.use('/v1/forum', forumRouter)
 server.use('/v1/comment', commentRouter)
+server.use('/v1/article', articleRouter)
 
 const port = process.env.PORT || 5000
 server.listen(port, () => console.log(`Server berjalan pada port : ${port}`))
