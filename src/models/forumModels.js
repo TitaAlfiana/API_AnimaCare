@@ -30,4 +30,3 @@ const Forum = mongoose.Schema({
 })
 
 module.exports = mongoose.model('Forum', Forum)
-// module.exports = mongoose.model('Detail', Detail)
