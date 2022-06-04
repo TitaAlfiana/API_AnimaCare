@@ -4,9 +4,9 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
-const forumRouter = require('./routes/forumRoutes')
-const commentRouter = require('./routes/commentRoutes')
-const articleRouter = require('./routes/articleRoutes')
+const forumRouter = require('./src/routes/forumRoutes')
+const commentRouter = require('./src/routes/commentRoutes')
+const articleRouter = require('./src/routes/articleRoutes')
 const server = express()
 
 mongoose.connect(process.env.DB_URL, {
@@ -19,26 +19,29 @@ Database.on('error', (error) => console.log(error))
 Database.once('open', () => console.log('Database Connected'))
 
 const fileStorage = multer.diskStorage({
-  destination: (request, file, callback) => {
-    callback(null, 'images')
+  destination: (request, file, cb) => {
+    cb(null, 'images')
   },
-  filename: (request, file, callback) => {
-    callback(null, new Date().getTime() + '-' + file.originalname)
+  filename: (request, file, cb) => {
+    cb(null, new Date().getTime() + '-' + file.originalname)
   }
 })
 
-const fileFilter = (request, file, callback) => {
-  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg'
+const fileFilter = (request, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
   ) {
-    callback(null, true)
+    cb(null, true)
   } else {
-    callback(null, false)
+    cb(null, false)
   }
 }
 
 server.use(cors())
 server.use(express.json())
-server.use('/images', express.static(path.join(__dirname, 'images')))
+server.use('/images', express.static(path.join(__dirname, '/images')))
 server.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'))
 server.use('/v1/forum', forumRouter)
 server.use('/v1/comment', commentRouter)
