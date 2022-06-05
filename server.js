@@ -3,7 +3,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const multer = require('multer')
-// const path = require('path')
 const forumRouter = require('./src/routes/forumRoutes')
 const commentRouter = require('./src/routes/commentRoutes')
 const articleRouter = require('./src/routes/articleRoutes')
@@ -23,7 +22,7 @@ const fileStorage = multer.diskStorage({
     cb(null, 'images')
   },
   filename: (request, file, cb) => {
-    cb(null, null, new Date().getTime() + '-' + file.originalname)
+    cb(null, new Date().getTime() + '-' + file.originalname)
   }
 })
 
@@ -40,12 +39,6 @@ const fileFilter = (request, file, cb) => {
 }
 
 server.use(cors())
-server.use((request, response, next) => {
-  response.setHeader('Access-Control-Allow-Origin', '*')
-  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
-  response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-  next()
-})
 server.use(express.json())
 // eslint-disable-next-line n/no-path-concat
 server.use(express.static(__dirname + '/images'))
