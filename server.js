@@ -40,6 +40,12 @@ const fileFilter = (request, file, cb) => {
 }
 
 server.use(cors())
+server.use((request, response, next) => {
+  response.setHeader('Access-Control-Allow-Origin', '*')
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  next()
+})
 server.use(express.json())
 // eslint-disable-next-line n/no-path-concat
 server.use(express.static(__dirname + '/images'))

@@ -1,52 +1,63 @@
 const Comment = require('../models/commentModels')
+const Forum = require('../models/forumModels')
 
-const getAllComment = async (request, h) => {
+const getAllComment = async (req, res) => {
   try {
     const comments = await Comment.find()
-    h.status(200).json({
-      status: 'success',
+    if (!comments) {
+      return res.status(404).json({
+        message: 'Komentar tidak di temukan',
+        success: false
+      })
+    }
+    return res.status(200).json({
+      message: 'Komentar berhasil di temukan',
+      success: true,
       comments
     })
-  } catch (e) {
-    h.status(500).json({
-      status: 'error',
-      message: e.message
+  } catch {
+    res.status(500).json({
+      message: 'Komentar gagal di temukan',
+      success: false
     })
   }
 }
 
-const getCommentById = async (request, h) => {
+const postComment = async (req, res) => {
+  const comment = new Comment(req.body)
   try {
-    const comment = await Comment.findById(request.params.id)
-    h.status(200).json({
-      status: 'success',
-      comment
+    const savecomment = await comment.save()
+    return res.status(201).json({
+      message: 'Komentar berhasil ditambahkan',
+      success: true,
+      savecomment
     })
-  } catch (e) {
-    h.status(404).json({
-      status: 'fail',
-      message: 'Comment tidak ditemukan'
+  } catch {
+    res.status(400).json({
+      message: 'Komentar gagal ditambahkan',
+      success: false
     })
   }
 }
 
-const postComment = async (request, h) => {
-  const comment = new Comment(request.body)
-
-  try {
-    const saveComment = await comment.save()
-    h.status(201).json({
-      status: 'success',
-      message: 'Comment berhasil ditambahkan',
-      saveComment
-    })
-  } catch (e) {
-    h.status(400).json({
-      status: 'fail',
-      message: 'Comment gagal ditambahkan'
-    })
-  }
-}
+// const postComment = async (req, res) => {
+//   const comment = new Comment({ nama: req.body.nama, comment: req.body.comment })
+//   comment.save((error, result) => {
+//     if (error) {
+//       console.log(error)
+//     } else {
+//       Forum.findById(req.params.id, (error, forum) => {
+//         if (error) {
+//           console.log(error)
+//         } else {
+//           console.log('======comment=====')
+//           console.log(forum.comments)
+//         }
+//       })
+//       console.log(result)
+//     }
+//   })
+// }
 
 const updateComment = async (request, h) => {
   try {
@@ -82,7 +93,6 @@ const deleteComment = async (request, h) => {
 
 module.exports = {
   getAllComment,
-  getCommentById,
   postComment,
   updateComment,
   deleteComment
