@@ -31,22 +31,23 @@ const getArticleById = async (request, h) => {
 }
 
 const postArticle = async (request, h) => {
-  if (!request.file) {
-    const e = new Error('image tidak ter-upload')
-    e.errorStatus = 422
-    throw e
-  }
-
-  const article = new Article({
-    title: request.body.title,
-    descript: request.body.descript,
-    subFirstTitle: request.body.subFirstTitle,
-    descriptSubFirstTitle: request.body.descriptSubFirstTitle,
-    subSecondTitle: request.body.subSecondTitle,
-    descriptSubSecondTitle: request.body.descriptSubSecondTitle,
-    image: request.file.filename
-  })
   try {
+    if (!request.file) {
+      const e = new Error('image tidak ter-upload')
+      e.errorStatus = 422
+      throw e
+    }
+
+    const article = new Article({
+      title: request.body.title,
+      descript: request.body.descript,
+      subFirstTitle: request.body.subFirstTitle,
+      descriptSubFirstTitle: request.body.descriptSubFirstTitle,
+      subSecondTitle: request.body.subSecondTitle,
+      descriptSubSecondTitle: request.body.descriptSubSecondTitle,
+      image: request.file.filename
+    })
+
     const saveartikel = await article.save()
     h.status(201).json({
       status: 'success',
