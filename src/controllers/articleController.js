@@ -32,11 +32,11 @@ const getArticleById = async (request, h) => {
 
 const postArticle = async (request, h) => {
   console.log(request.body)
-  if (!request.file) {
-    const e = new Error('image tidak ter-upload')
-    e.errorStatus = 422
-    throw e
-  }
+  // if (!request.file) {
+  //   const e = new Error('image tidak ter-upload')
+  //   e.errorStatus = 422
+  //   throw e
+  // }
 
   console.log(request.file)
 
