@@ -46,8 +46,8 @@ const postArticle = async (request, h) => {
     subFirstTitle: request.body.subFirstTitle,
     descriptSubFirstTitle: request.body.descriptSubFirstTitle,
     subSecondTitle: request.body.subSecondTitle,
-    descriptSubSecondTitle: request.body.descriptSubSecondTitle,
-    image: request.file.filename
+    descriptSubSecondTitle: request.body.descriptSubSecondTitle
+    // image: request.file.filename
   })
   try {
     const saveartikel = await article.save()
