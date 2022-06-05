@@ -19,7 +19,7 @@ Database.once('open', () => console.log('Database Connected'))
 
 const fileStorage = multer.diskStorage({
   destination: (request, file, cb) => {
-    cb(null, 'images')
+    cb(null, './images')
   },
   filename: (request, file, cb) => {
     cb(null, new Date().getTime() + '-' + file.originalname)
