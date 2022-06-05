@@ -36,13 +36,10 @@ const postArticle = async (request, h) => {
     e.errorStatus = 422
     throw e
   }
-  const image = request.file.path
-
   const article = new Article({
     title: request.body.title,
     descript: request.body.descript,
-    // eslint-disable-next-line object-shorthand
-    image: image
+    image: request.file.path
   })
   try {
     const saveartikel = await article.save()
