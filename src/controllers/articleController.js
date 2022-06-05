@@ -39,7 +39,7 @@ const postArticle = async (request, h) => {
   const article = new Article({
     title: request.body.title,
     descript: request.body.descript,
-    image: request.file.path
+    image: request.file
   })
   try {
     const saveartikel = await article.save()
