@@ -47,5 +47,6 @@ server.use('/v1/forum', forumRouter)
 server.use('/v1/comment', commentRouter)
 server.use('/v1/article', articleRouter)
 
+console.log(__dirname)
 const port = process.env.PORT || 5000
 server.listen(port, () => console.log(`Server berjalan pada port : ${port}`))
