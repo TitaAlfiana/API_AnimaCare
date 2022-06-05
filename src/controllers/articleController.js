@@ -40,6 +40,10 @@ const postArticle = async (request, h) => {
   const article = new Article({
     title: request.body.title,
     descript: request.body.descript,
+    subFirstTitle: request.body.subFirstTitle,
+    descriptSubFirstTitle: request.body.descriptSubFirstTitle,
+    subSecondTitle: request.body.subSecondTitle,
+    descriptSubSecondTitle: request.body.descriptSubSecondTitle,
     image: request.file.filename
   })
   try {
