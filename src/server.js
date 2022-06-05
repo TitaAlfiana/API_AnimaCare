@@ -37,6 +37,12 @@ const fileFilter = (request, file, callback) => {
 }
 
 server.use(cors())
+server.use((request, response, next) => {
+  response.setHeader('Access-Control-Allow-Origin', '*')
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  next()
+})
 server.use(express.json())
 server.use('/images', express.static(path.join(__dirname, 'images')))
 server.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'))

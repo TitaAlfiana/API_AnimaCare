@@ -16,17 +16,10 @@ const Forum = mongoose.Schema({
   date: {
     type: Date, default: Date.now
   },
-  komentar: [{
-    nama: {
-      type: String,
-      require: true
-    },
-    deskripsiKomen: {
-      type: String,
-      require: true
-    }
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
   }]
-
 })
 
 module.exports = mongoose.model('Forum', Forum)

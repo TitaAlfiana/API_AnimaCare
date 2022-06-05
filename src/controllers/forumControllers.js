@@ -25,7 +25,7 @@ const getForumById = async (request, h) => {
   } catch (e) {
     h.status(404).json({
       status: 'fail',
-      message: 'Forum tidak ditemukan'
+      message: 'Comment tidak ditemukan'
     })
   }
 }
