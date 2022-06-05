@@ -9,22 +9,22 @@ const Article = mongoose.Schema({
     type: String,
     require: true
   },
-  subFirstTitle: {
-    type: String,
-    require: true
-  },
-  descriptSubFirstTitle: {
-    type: String,
-    require: true
-  },
-  subSecondTitle: {
-    type: String,
-    require: true
-  },
-  descriptSubSecondTitle: {
-    type: String,
-    require: true
-  },
+  // subFirstTitle: {
+  //   type: String,
+  //   require: true
+  // },
+  // descriptSubFirstTitle: {
+  //   type: String,
+  //   require: true
+  // },
+  // subSecondTitle: {
+  //   type: String,
+  //   require: true
+  // },
+  // descriptSubSecondTitle: {
+  //   type: String,
+  //   require: true
+  // },
   image: {
     type: String,
     require: true
