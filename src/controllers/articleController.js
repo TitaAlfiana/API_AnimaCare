@@ -37,6 +37,8 @@ const postArticle = async (request, h) => {
     throw e
   }
 
+  console.log(request.file)
+
   const article = new Article({
     title: request.body.title,
     descript: request.body.descript,
