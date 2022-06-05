@@ -31,14 +31,11 @@ const getArticleById = async (request, h) => {
 }
 
 const postArticle = async (request, h) => {
-  console.log(request.body)
-  // if (!request.file) {
-  //   const e = new Error('image tidak ter-upload')
-  //   e.errorStatus = 422
-  //   throw e
-  // }
-
-  console.log(request.file)
+  if (!request.file) {
+    const e = new Error('image tidak ter-upload')
+    e.errorStatus = 422
+    throw e
+  }
 
   const article = new Article({
     title: request.body.title,
@@ -46,8 +43,8 @@ const postArticle = async (request, h) => {
     subFirstTitle: request.body.subFirstTitle,
     descriptSubFirstTitle: request.body.descriptSubFirstTitle,
     subSecondTitle: request.body.subSecondTitle,
-    descriptSubSecondTitle: request.body.descriptSubSecondTitle
-    // image: request.file.filename
+    descriptSubSecondTitle: request.body.descriptSubSecondTitle,
+    image: request.file.filename
   })
   try {
     const saveartikel = await article.save()
