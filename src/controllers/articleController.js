@@ -36,10 +36,11 @@ const postArticle = async (request, h) => {
     e.errorStatus = 422
     throw e
   }
+
   const article = new Article({
     title: request.body.title,
     descript: request.body.descript,
-    image: request.file.path
+    image: request.file.filename
   })
   try {
     const saveartikel = await article.save()
