@@ -40,8 +40,7 @@ const fileFilter = (request, file, cb) => {
 
 server.use(cors())
 server.use(express.json())
-// eslint-disable-next-line n/no-path-concat
-server.use(express.static(__dirname + 'images'))
+server.use(express.static(__dirname + '/images'))
 server.use(multer({ storage: fileStorage, fileFilter }).single('image'))
 server.use('/v1/forum', forumRouter)
 server.use('/v1/comment', commentRouter)
