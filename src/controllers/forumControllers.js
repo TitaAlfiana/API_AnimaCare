@@ -1,5 +1,7 @@
 const Forum = require('../models/forumModels')
+const Comment = require('../models/commentModel')
 
+// forum
 const getAllForum = async (request, h) => {
   try {
     const forums = await Forum.find()
@@ -17,7 +19,7 @@ const getAllForum = async (request, h) => {
 
 const getForumById = async (request, h) => {
   try {
-    const forum = await Forum.findById(request.params.id)
+    const forum = await Forum.findById(request.params.id).populate('comments').exec()
     h.status(200).json({
       status: 'success',
       forum
@@ -31,7 +33,7 @@ const getForumById = async (request, h) => {
 }
 
 const postForum = async (request, h) => {
-  const forum = new Forum(request.body)
+  const forum = new Forum({ nama: request.body.nama, title: request.body.title, descript: request.body.descript })
 
   try {
     const saveforum = await forum.save()
@@ -80,32 +82,78 @@ const deleteForum = async (request, h) => {
   }
 }
 
-const postComment = async (request, h) => {
-  const comment = request.body
+// comment
+const postComment = async (request, response) => {
+  const comment = new Comment({ nama: request.body.nama, comment: request.body.comment })
+  comment.save((err, comment) => {
+    if (err) {
+      console.log(err)
+    } else {
+      Forum.findById(request.params.id, (err, forum) => {
+        if (err) {
+          console.log(err)
+          response.json({
+            status: 'fail',
+            message: 'Comment gagal ditambahkan'
+          })
+        } else {
+          forum.comments.push(comment)
+          forum.save()
+          response.json({
+            status: 'success',
+            message: 'Comment berhasil ditambahkan'
+          })
+        }
+      })
+    }
+  })
+}
 
+const deleteComment = async (request, h) => {
+  const deletedcomment = await Comment.findById(request.params.id)
+  console.log(deletedcomment)
+  // try {
+  //   h.status(200).json({
+  //     status: 'success',
+  //     message: 'Comment berhasil dihapus',
+  //     deletedcomment
+  //   })
+  // } catch (e) {
+  //   h.status(400).json({
+  //     status: 'fail',
+  //     message: 'Comment gagal dihapus. Id tidak ditemukan'
+  //   })
+  // }
+}
+
+// search
+const searchForum = async (request, h) => {
   try {
-    await Forum.updateOne(
-      { _id: request.params.id },
-      { $push: { comments: comment } }
-    )
-
-    h.status(201).json({
+    const forums = await Forum.find({
+      $or: [
+        { title: { $regex: request.params.key, $options: 'i' } },
+        { descript: { $regex: request.params.key, $options: 'i' } }
+      ]
+    })
+    h.status(200).json({
       status: 'success',
-      message: 'Comment berhasil ditambahkan'
+      forums
     })
   } catch (e) {
-    h.status(400).json({
-      status: 'fail',
-      message: 'Comment gagal ditambahkan'
+    h.status(500).json({
+      status: 'error',
+      message: e.message
     })
   }
 }
 
 module.exports = {
-  postComment,
   getAllForum,
   postForum,
   updateForum,
   getForumById,
-  deleteForum
+  deleteForum,
+  postComment,
+  deleteComment,
+  searchForum
 }

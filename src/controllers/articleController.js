@@ -94,10 +94,31 @@ const deleteArticle = async (request, h) => {
   }
 }
 
+const searchArticle = async (request, h) => {
+  try {
+    const articles = await Article.find({
+      $or: [
+        { title: { $regex: request.params.key, $options: 'i' } },
+        { descript: { $regex: request.params.key, $options: 'i' } }
+      ]
+    })
+    h.status(200).json({
+      status: 'success',
+      articles
+    })
+  } catch (err) {
+    h.status(500).json({
+      status: 'error',
+      message: err.message
+    })
+  }
+}
+
 module.exports = {
   getAllArticle,
   postArticle,
   updateArticle,
   getArticleById,
-  deleteArticle
+  deleteArticle,
+  searchArticle
 }
