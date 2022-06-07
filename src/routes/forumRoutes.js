@@ -4,7 +4,8 @@ const {
   postForum,
   updateForum,
   getForumById,
-  deleteForum
+  deleteForum,
+  postComment
 } = require('../controllers/forumControllers')
 
 const router = express.Router()
@@ -12,6 +13,7 @@ const router = express.Router()
 router.get('/', getAllForum)
 router.get('/:id', getForumById)
 router.post('/', postForum)
+router.post('/:id/comment', postComment)
 router.patch('/:id', updateForum)
 router.delete('/:id', deleteForum)
 

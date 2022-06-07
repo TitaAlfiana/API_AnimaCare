@@ -80,7 +80,29 @@ const deleteForum = async (request, h) => {
   }
 }
 
+const postComment = async (request, h) => {
+  const comment = request.body
+
+  try {
+    await Forum.updateOne(
+      { _id: request.params.id },
+      { $push: { comments: comment } }
+    )
+
+    h.status(201).json({
+      status: 'success',
+      message: 'Comment berhasil ditambahkan'
+    })
+  } catch (e) {
+    h.status(400).json({
+      status: 'fail',
+      message: 'Comment gagal ditambahkan'
+    })
+  }
+}
+
 module.exports = {
+  postComment,
   getAllForum,
   postForum,
   updateForum,

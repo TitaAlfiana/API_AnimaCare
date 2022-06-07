@@ -17,8 +17,8 @@ const Forum = mongoose.Schema({
     type: Date, default: Date.now
   },
   comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: 'Comment'
   }]
 })
 
