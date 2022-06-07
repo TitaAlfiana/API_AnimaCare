@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const Forum = mongoose.Schema({
-  name: {
+  nama: {
     type: String,
     require: true
   },
@@ -17,8 +17,8 @@ const Forum = mongoose.Schema({
     type: Date, default: Date.now
   },
   comments: [{
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: 'Comment'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
   }]
 })
 

@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const multer = require('multer')
 const forumRouter = require('./src/routes/forumRoutes')
-const commentRouter = require('./src/routes/commentRoutes')
 const articleRouter = require('./src/routes/articleRoutes')
 const server = express()
 
@@ -44,7 +43,6 @@ server.use(express.json())
 server.use('/images', express.static(__dirname + '/images'))
 server.use(multer({ storage: fileStorage, fileFilter }).single('image'))
 server.use('/v1/forum', forumRouter)
-server.use('/v1/comment', commentRouter)
 server.use('/v1/article', articleRouter)
 
 const port = process.env.PORT || 5000

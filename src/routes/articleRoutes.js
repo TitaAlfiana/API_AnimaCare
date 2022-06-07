@@ -4,7 +4,8 @@ const {
   postArticle,
   updateArticle,
   getArticleById,
-  deleteArticle
+  deleteArticle,
+  searchArticle
 } = require('../controllers/articleController')
 
 const routerArticle = express.Router()
@@ -14,5 +15,6 @@ routerArticle.get('/:id', getArticleById)
 routerArticle.post('/', postArticle)
 routerArticle.patch('/:id', updateArticle)
 routerArticle.delete('/:id', deleteArticle)
+routerArticle.get('/search/:key', searchArticle)
 
 module.exports = routerArticle
