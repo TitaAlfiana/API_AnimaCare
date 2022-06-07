@@ -17,11 +17,8 @@ const Forum = mongoose.Schema({
     type: Date, default: Date.now
   },
   comments: [{
-<<<<<<< HEAD
-=======
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
->>>>>>> fa61305b34d2f72870480db77cb7d1320795b5f0
   }]
 })
 
