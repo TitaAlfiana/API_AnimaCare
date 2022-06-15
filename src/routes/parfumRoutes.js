@@ -1,18 +1,18 @@
 const express = require('express')
 const {
-  getAllAksesoris,
-  postAksesoris,
-  updateAksesoris,
-  getAksesorisById,
-  deleteAksesoris
+  getAllParfum,
+  postParfum,
+  updateParfum,
+  getParfumById,
+  deleteParfum
 } = require('../controllers/categoryController')
 
-const aksesorisRouter = express.Router()
+const parfumRouter = express.Router()
 
-aksesorisRouter.get('/', getAllAksesoris)
-aksesorisRouter.get('/:id', getAksesorisById)
-aksesorisRouter.post('/', postAksesoris)
-aksesorisRouter.patch('/:id', updateAksesoris)
-aksesorisRouter.delete('/:id', deleteAksesoris)
+parfumRouter.get('/', getAllParfum)
+parfumRouter.get('/:id', getParfumById)
+parfumRouter.post('/', postParfum)
+parfumRouter.patch('/:id', updateParfum)
+parfumRouter.delete('/:id', deleteParfum)
 
-module.exports = aksesorisRouter
+module.exports = parfumRouter
