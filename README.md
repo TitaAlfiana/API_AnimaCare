@@ -7,7 +7,6 @@
 
   <p align="center">
     API Documentations AnimaCare application.
-  https://animacare.herokuapp.com/
   </p>
 </p>
 
@@ -36,6 +35,7 @@
 - [Get Category Aksesoris](#get-category-aksesoris)
 - [Get Category Shampo](#get-category-shampo)
 - [Get Category Tas Hewan](#get-category-tas-hewan)
+- [Get Images](#get-images)
 - [Link Deploy](#link-deploy)
 - [Credit](#credit)
 - [Creator](#creator)
@@ -135,6 +135,22 @@ Menambahkan Artikel
 - ### Response
 
 ```json
+{
+    "status": "success",
+    "message": "Artikel berhasil ditambahkan",
+    "saveartikel": {
+        "title": "Selain Wortel, Kenali Jenis Makanan yang Aman Dikonsumsi Kelinci",
+        "descript": "Kelinci sangat identik sebagai hewan pengerat pemakan wortel, namun tahukah kamu jika ternyata makanan kelinci tak hanya itu loh! Makanan yang beragam dengan gizi yang seimbang sangat baik untuk perkembangan kelinci peliharaan. Hal ini dikarenakan kelinci memiliki saluran pencernaan yang sangat sensitif, sehingga perbedaan tekstur makanan sangat diperlukan. Kelinci juga sangat rentan dengan masalah pencernaan seperti diare dan kembung. Untuk itu sebaiknya kamu mengerti jenis makanan apa saja yang bisa dikonsumsi kelinci. Melansir dari Resources Best Friend, Rabu (15/12/2021), kamu bisa memberikan beberapa jenis makanan ini untuk kelinci peliharaan.",
+        "subFirstTitle": "Apa saja jenis makanan itu ?",
+        "descriptSubFirstTitle": "Pertama sediakan banyak air.Kelinci perlu tetap terhidrasi, sehingga mereka harus memiliki persediaan air minum yang tidak terbatas. Untuk menjaga kebersihan air, bersihkan wadah dan ganti air setiap hari. Hindari menggunakan botol sebagai wadah minum, karena selain susah dibersihkan, kelinci juga akan kesulitan meminumnya. Kedua Jerami Sebagai Makanan pokok kelinci Bagian bawah piramida makanan kelinci berisi serat bertangkai panjang dalam bentuk jerami. Kelinci memerlukan persediaan jerami segar yang tidak terbatas setiap harinya. Beberapa jenis jerami yang sehat untuk kelinci adalah jenis jerami rumput timothy, rumput kebun, jerami brome dan jerami gandum. Kamu bisa menggunakan 1 jenis jerami atau mencampurnya, pastikan jerami masih dalam keadaan bagus, tidak berjamur dan berdebu. ",
+        "subSecondTitle": "Tidak hanya itu saja, Pelet dan Sayuran juga menjadi favorit kelinci",
+        "descriptSubSecondTitle": "Selanjutnya Pelet dapat diberikan dalam jumlah kecil.Kamu bisa menemukan pelet khusus kelinci di toko hewan peliharaan. Kelinci dewasa berukuran rata-rata (6-10 pon) hanya membutuhkan seperempat cangkir pelet setiap hari. Jika berat kelinci di bawah 5 pon, beri makan 1/8 cangkir saja. Hindari memberi makan pelet terlalu banyak untuk kelinci karena ini bukanlah makanan utama mereka. Kelinci di bawah satu tahun dapat diberi makan pelet alfalfa dan juga jerami rumput. Gunakan pelet dengan kandungan serat yang tinggi, hindari pelet yang sudah dicampur jagung, kacang-kacangan dan biji-bijian karena dapat berbahaya bagi kelinci. Terakhir beri makanan favorite kelinci yaitu Sayuran. Sayuran adalah makanan yang sangat disukai kelinci. Kamu bisa memberi makan kelincimu sayuran setiap hari, sedangkan untuk jenis makanan yang lain cukup berikan 1-2 kali seminggu. Ada beberapa jenis sayuran yang aman untuk kelinci, diantaranya: Sayuran yang bisa dimakan setiap hari: Paprika , Bok choy, Kubis brussel, Bagian atas Wortel, Timun, Selada, Kecambah, Okra, Rumput gandum. Herbal: Kemangi, Daun ketumbar, Dill, Mint, Oregano, Rosemary, Sage, Thyme, Timun jepang Sayuran dan buah yang cukup diberikan 1-2 kali seminggu: Brokoli (batang dan daun), Wortel, Semanggi, Sejenis sawi, Bunga (kembang sepatu,daisy, mawar dll), Kubis, Bayam, Buah (apel, berries, ceri tanpa biji, anggur, melon, nectarine,jeruk, pepaya,persik, pir, nanas, prem dan semangka)",
+        "image": "1655699621090-kelinci.jpg",
+        "_id": "62aff8a90fe0ff0651c4358a",
+        "date": "2022-06-20T04:33:45.353Z",
+        "__v": 0
+    }
+}
 ```
 ## Delete Article
 
@@ -151,6 +167,14 @@ Menghapus Article
 - ### Response
 
 ```json
+{
+    "status": "success",
+    "message": "Artikel berhasil dihapus",
+    "deletedarticle": {
+        "acknowledged": true,
+        "deletedCount": 1
+    }
+}
 ```
 
 ## Search Article
@@ -884,8 +908,48 @@ Mendapatkan seluruh kategori tas hewan
 - ### Response
 
 ```json
-
+{
+    "status": "success",
+    "tasHewan": [
+        {
+            "_id": "62afbee242459ce25e4887c9",
+            "name": "Mobby Travelling Bag",
+            "image": "1655684834952-z.png",
+            "date": "2022-06-20T00:27:14.974Z",
+            "__v": 0
+        },
+        {
+            "_id": "62afbef642459ce25e4887cb",
+            "name": "Waterproof Pet Carrier Transparent",
+            "image": "1655684854480-x.png",
+            "date": "2022-06-20T00:27:34.484Z",
+            "__v": 0
+        },
+        {
+            "_id": "62afbf0e42459ce25e4887cd",
+            "name": "Pet Carrier Tas Gendong",
+            "image": "1655684878372-c.png",
+            "date": "2022-06-20T00:27:58.383Z",
+            "__v": 0
+        }
+    ]
+}
 ```
+## GEt Images 
+
+Mendapatkan Gambar
+
+- ### URL
+
+  /images/{image}
+
+- ### Method
+
+  GET
+
+- ### Response
+
+File gambar yang di dapatkan
 
 ## Link Deploy
 - https://animacare.herokuapp.com/

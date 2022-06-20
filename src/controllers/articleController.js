@@ -5,6 +5,7 @@ const getAllArticle = async (request, h) => {
     const articles = await Article.find()
     h.status(200).json({
       status: 'success',
+      message: 'Seluruh artikel berhasil didapatkan',
       articles
     })
   } catch (e) {
@@ -20,6 +21,7 @@ const getArticleById = async (request, h) => {
     const article = await Article.findById(request.params.id)
     h.status(200).json({
       status: 'success',
+      message: 'Artikel berhasil ditemukan',
       article
     })
   } catch (e) {
@@ -104,6 +106,7 @@ const searchArticle = async (request, h) => {
     })
     h.status(200).json({
       status: 'success',
+      message: 'Artikel berhasil ditemukan',
       articles
     })
   } catch (err) {
