@@ -36,6 +36,7 @@
 - [Get Category Shampo](#get-category-shampo)
 - [Get Category Tas Hewan](#get-category-tas-hewan)
 - [Get Images](#get-images)
+- [Detail Documentation API](#detail-documentation-api)
 - [Link Deploy](#link-deploy)
 - [Credit](#credit)
 - [Creator](#creator)
@@ -950,6 +951,9 @@ Mendapatkan Gambar
 - ### Response
 
 File gambar yang di dapatkan
+
+## Detail Documentation
+- <a href="https://documenter.getpostman.com/view/20072942/UzBnpRMg"> Detail Documentation </a>
 
 ## Link Deploy
 - https://animacare.herokuapp.com/
