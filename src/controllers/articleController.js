@@ -65,19 +65,45 @@ const postArticle = async (request, h) => {
 }
 
 const updateArticle = async (request, h) => {
-  try {
-    const updatedarticle = await Article.updateOne({ _id: request.params.id }, { $set: request.body })
-    h.status(200).json({
-      status: 'success',
-      message: 'Artikel berhasil diupdate',
-      updatedarticle
-    })
-  } catch (e) {
-    h.status(400).json({
-      status: 'fail',
-      message: 'Artikel gagal diupdate. Id tidak ditemukan'
-    })
+  if (!request.file) {
+    const e = new Error('image tidak ter-upload')
+    e.errorStatus = 422
+    throw e
   }
+
+  const title = request.body.title
+  const descript = request.body.descript
+  const subFirstTitle = request.body.subFirstTitle
+  const descriptSubFirstTitle = request.body.descriptSubFirstTitle
+  const subSecondTitle = request.body.subSecondTitle
+  const descriptSubSecondTitle = request.body.descriptSubSecondTitle
+  const image = request.file.filename
+  const id = request.params.id
+
+  await Article.findById(id)
+    .then(article => {
+      article.title = title
+      article.descript = descript
+      article.subFirstTitle = subFirstTitle
+      article.descriptSubFirstTitle = descriptSubFirstTitle
+      article.subSecondTitle = subSecondTitle
+      article.descriptSubSecondTitle = descriptSubSecondTitle
+      article.image = image
+      return article.save()
+    })
+    .then(article => {
+      h.status(200).json({
+        status: 'success',
+        message: 'Artikel berhasil diubah',
+        article
+      })
+    })
+    .catch(err => {
+      h.status(500).json({
+        status: 'error',
+        message: err.message
+      })
+    })
 }
 
 const deleteArticle = async (request, h) => {
