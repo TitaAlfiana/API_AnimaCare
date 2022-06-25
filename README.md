@@ -952,7 +952,7 @@ Mendapatkan Gambar
 
 File gambar yang di dapatkan
 
-## Detail Documentation
+## Detail Documentation API
 - <a href="https://documenter.getpostman.com/view/20072942/UzBnpRMg"> Detail Documentation </a>
 
 ## Link Deploy
