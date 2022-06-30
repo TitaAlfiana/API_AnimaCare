@@ -7,6 +7,7 @@ const getAllForum = async (request, h) => {
     const forums = await Forum.find()
     h.status(200).json({
       status: 'success',
+      message: 'Seluruh forum berhasil didapatkan',
       forums
     })
   } catch (e) {
@@ -22,12 +23,13 @@ const getForumById = async (request, h) => {
     const forum = await Forum.findById(request.params.id).populate('comments').exec()
     h.status(200).json({
       status: 'success',
+      message: 'Forum berhasil ditemukan',
       forum
     })
   } catch (e) {
     h.status(404).json({
       status: 'fail',
-      message: 'Comment tidak ditemukan'
+      message: 'Foum tidak ditemukan'
     })
   }
 }
@@ -101,7 +103,8 @@ const postComment = async (request, response) => {
           forum.save()
           response.json({
             status: 'success',
-            message: 'Comment berhasil ditambahkan'
+            message: 'Comment berhasil ditambahkan',
+            comment
           })
         }
       })
@@ -137,6 +140,7 @@ const searchForum = async (request, h) => {
     })
     h.status(200).json({
       status: 'success',
+      message: 'Forum berhasil ditemukan',
       forums
     })
   } catch (e) {
