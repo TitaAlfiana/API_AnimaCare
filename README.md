@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://my-animacare.netlify.app/">
-    <img src="https://github.com/TitaAlfiana/AnimaCare/blob/main/src/public/icons/logoAnimaCare.png" alt="Logo" width=350 height=60>
+    <img src="https://github.com/TitaAlfiana/AnimaCare/blob/main/src/public/logo/logo-transparan.png" alt="Logo" width=350 height=60>
   </a>
 
   <h3 align="center">AnimaCare API</h3>
